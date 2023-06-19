@@ -3,17 +3,18 @@ import { z } from 'zod';
 
 import bcrypt from 'bcrypt';
 import { prisma } from './lib/prisma';
+import fastifyJWT from '@fastify/jwt';
 
 const fastify = Fastify({
   logger: true,
 });
 
-fastify.get('/', (request, reply) => {
-  reply.send({ hello: 'world' });
+fastify.register(fastifyJWT, {
+  secret: process.env.SECRET_KEY,
 });
 
-fastify.post('/sign-up', async (request, reply) => {
-  const _parsedBody = await z
+fastify.post('/auth/register', async (request, reply) => {
+  const _parsedBody = z
     .object({
       name: z.string().min(2),
       email: z.string().email(),
@@ -35,11 +36,11 @@ fastify.post('/sign-up', async (request, reply) => {
   reply.statusCode = 204;
 });
 
-fastify.post('/sign-in', async (request, reply) => {
+fastify.post('/auth/login', async (request, reply) => {
   const _parsedBody = z
     .object({
       email: z.string().email(),
-      password: z.string().min(8),
+      password: z.string(),
     })
     .parse(request.body);
 
@@ -59,10 +60,34 @@ fastify.post('/sign-in', async (request, reply) => {
     return;
   }
 
-  reply.statusCode = 204;
+  const token = fastify.jwt.sign(
+    {
+      user: {
+        email: _userDB.email,
+        name: _userDB.name,
+        userID: _userDB.userID,
+      },
+    },
+    {
+      expiresIn: '180000',
+    },
+  );
+
+  reply.send({ token });
 });
 
-fastify.post('/auth', (request, reply) => {});
+fastify.post('/auth/verify-token/', (request, reply) => {
+  const { token } = z
+    .object({ token: z.string().min(10, 'Token inválido') })
+    .parse(request.body);
+
+  try {
+    fastify.jwt.verify(token);
+    reply.send({ isValid: true });
+  } catch (error) {
+    reply.send({ isValid: false });
+  }
+});
 
 fastify.listen({ port: 8080 }, (err, address) => {
   if (err) throw err;
