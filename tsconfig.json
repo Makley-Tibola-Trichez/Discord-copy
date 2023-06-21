@@ -4,6 +4,8 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "experimentalDecorators": true,
+    
+    "noImplicitAny": true,
 
     "forceConsistentCasingInFileNames": true,
     "strict": true,
