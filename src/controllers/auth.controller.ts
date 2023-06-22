@@ -82,9 +82,9 @@ export class AuthController {
 
     try {
       fastify.jwt.verify(token);
-      reply.send({ isValid: true });
+      return { isValid: true };
     } catch (error) {
-      reply.send({ isValid: false });
+      return { isValid: false };
     }
   }
 }
