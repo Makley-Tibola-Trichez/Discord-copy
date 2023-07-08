@@ -1,65 +1,37 @@
-import { FastifyRequest, FastifyReply } from 'fastify';
-import { JWTSchemaType } from '../schemas/jwt.schema';
-import { prisma } from '../lib/prisma';
-import { z } from 'zod';
+import { FastifyReply, FastifyRequest } from 'fastify';
+import { FriendsRepository } from '../repository/Friends.repository';
+import {
+  friendInviteSchema,
+  friendsListSchema,
+} from '../schemas/friends.schemas';
 
 export class FriendshipController {
   constructor() {
     throw new Error(`class ${this.constructor.name}`);
   }
 
-  static async newFriendInvite(request: FastifyRequest, reply: FastifyReply) {
-    const _parsedBody = z
-      .object({
-        inviteUserID: z.string().uuid(),
-      })
-      .parse(request.body);
+  static async friends(request: FastifyRequest, reply: FastifyReply) {
+    const _friendsList = await FriendsRepository.listAllFriends(
+      request.user.user.userID,
+    );
 
-    const _userInformation = request.user;
+    const _parsedFriendsList = friendsListSchema.parse(_friendsList);
 
-    await prisma.$connect();
+    return _parsedFriendsList;
+  }
+  static async inviteNewFriend(request: FastifyRequest, reply: FastifyReply) {
+    const _inviteUserBody = friendInviteSchema.parse(request.body);
 
-    const _friendshipID = await prisma.friendship.findFirst({
-      select: {
-        friendshipID: true,
-      },
-      where: {
-        OR: [
-          {
-            userID: _parsedBody.inviteUserID,
-            friendID: request.user.user.userID,
-          },
-          {
-            userID: request.user.user.userID,
-            friendID: _parsedBody.inviteUserID,
-          },
-        ],
-      },
-    });
+    const _newFriendshipID = await FriendsRepository.inviteNewFriend(
+      request.user.user.userID,
+      _inviteUserBody.inviteUserID,
+    );
 
-    if (_friendshipID) {
-      await prisma.$disconnect();
-
+    if (_newFriendshipID === null) {
       reply.statusCode = 405;
 
-      return {
-        message: 'Already a Friend',
-      };
+      return { message: 'Already a Friend' };
     }
-
-    const _newFriendshipID = await prisma.friendship.create({
-      select: {
-        friendshipID: true,
-      },
-
-      data: {
-        userID: _userInformation.user.userID,
-        friendID: _parsedBody.inviteUserID,
-      },
-    });
-
-    await prisma.$disconnect();
-
     return { friendshipID: _newFriendshipID };
   }
 }
