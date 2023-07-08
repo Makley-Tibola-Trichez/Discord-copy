@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { createUserSchema, loginSchema } from '../schemas/auth.schemas';
-import { AuthRepository } from '../repository/Auth.repository';
+import { AuthRepository } from '../repository/auth.repository';
 
 export class AuthController {
   constructor() {

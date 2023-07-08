@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { FriendsRepository } from '../repository/Friends.repository';
+import { FriendsRepository } from '../repository/friends.repository';
 import {
   friendInviteSchema,
   friendsListSchema,
