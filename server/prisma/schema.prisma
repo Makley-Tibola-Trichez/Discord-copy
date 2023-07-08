@@ -48,5 +48,5 @@ model Friendship {
   // 1 - Pending
   // 2 - Friend
   // 3 - Blocked
-  inviteStatus Int @default(0)
+  status Int @default(0)
 }
