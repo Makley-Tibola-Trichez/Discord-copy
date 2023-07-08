@@ -1,6 +1,7 @@
 import { PrismaClientValidationError } from '@prisma/client/runtime';
 import { PrismaConnectDisconnect } from '../decorators/prismaConnectDisconnect';
 import { prisma } from '../lib/prisma';
+import { InviteStatus } from '@prisma/client';
 
 export class FriendsRepository {
   @PrismaConnectDisconnect
@@ -64,6 +65,7 @@ export class FriendsRepository {
       data: {
         userID: userID,
         friendID: invitedUserID,
+        status: InviteStatus.PENDING,
       },
     });
 

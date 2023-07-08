@@ -48,5 +48,12 @@ model Friendship {
   // 1 - Pending
   // 2 - Friend
   // 3 - Blocked
-  status Int @default(0)
+  status InviteStatus @default(NO_STATUS)
+}
+
+enum InviteStatus {
+  NO_STATUS
+  PENDING
+  FRIEND
+  BLOCKED
 }
