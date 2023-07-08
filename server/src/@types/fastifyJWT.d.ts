@@ -1,4 +1,4 @@
-import { JWTSchemaType } from '../schemas/jwt.schema';
+import { JWTSchemaType } from '../schemas/jwt.schemas';
 
 declare module '@fastify/jwt' {
   interface FastifyJWT {
