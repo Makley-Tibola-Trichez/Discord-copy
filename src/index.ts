@@ -2,10 +2,11 @@ import { AuthController } from './controllers/auth.controller';
 import { fastify } from './lib/fastify';
 import { ThrowFastifyListenError } from './errors/throwFastifyListenError';
 import { isAuthenticated } from './hooks/isAuthenticated';
+import { FriendshipController } from './controllers/friendship.controller';
 
 fastify.register((fastifyPrivate, opts, done) => {
   fastifyPrivate.addHook('preHandler', isAuthenticated);
-
+  fastifyPrivate.post('/newFriendInvite', FriendshipController.newFriendInvite);
   done();
 });
 

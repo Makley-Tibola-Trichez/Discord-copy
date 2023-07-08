@@ -24,7 +24,7 @@ export class AuthController {
 
     await prisma.$connect();
 
-    await prisma.users.create({
+    await prisma.user.create({
       data: { ..._parsedBody, password: _hashedPassword, salt: _salt },
     });
 
@@ -43,7 +43,7 @@ export class AuthController {
 
     await prisma.$connect();
 
-    const _userDB = await prisma.users.findFirstOrThrow({
+    const _userDB = await prisma.user.findFirstOrThrow({
       where: {
         email: _parsedBody.email,
       },
@@ -60,7 +60,7 @@ export class AuthController {
       return;
     }
 
-    const token = fastify.jwt.sign(
+    const token = await reply.jwtSign(
       {
         user: {
           email: _userDB.email,
@@ -69,7 +69,7 @@ export class AuthController {
         },
       },
       {
-        expiresIn: '180000',
+        expiresIn: '360000',
       },
     );
 

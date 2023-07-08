@@ -5,16 +5,48 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator erd {
+  provider = "prisma-erd-generator"
+  theme    = "forest"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model Users {
+model User {
   userID   String @id @unique @default(uuid())
   name     String
   username String @unique
   email    String @unique
   password String
-  salt     String @unique
+  salt     String @unique // Salt is used to hash the password
+
+  friendships Friendship[] @relation("UserToFriendship")
+  friendOf    Friendship[] @relation("FriendToFriendship")
+}
+
+// model DiscordServer {
+//   serverID   String @id @unique @default(uuid())
+//   serverName String @db.VarChar(100)
+
+//   // Futurely adds server image
+// }
+
+model Friendship {
+  friendshipID String   @id @unique @default(uuid())
+  userID       String
+  friendID     String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user   User @relation("UserToFriendship", fields: [userID], references: [userID])
+  friend User @relation("FriendToFriendship", fields: [friendID], references: [userID])
+
+  // 0 - No status
+  // 1 - Pending
+  // 2 - Friend
+  // 3 - Blocked
+  inviteStatus Int @default(0)
 }
