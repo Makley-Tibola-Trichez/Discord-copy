@@ -1,7 +1,6 @@
 import { FastifyInstance } from 'fastify';
-import { FriendshipController } from '../controllers/friendship.controller';
+import { FriendsController } from '../controllers/friends.controller';
 
 export async function friendsRoutes(fastify: FastifyInstance) {
-  fastify.post('/friends/invite', FriendshipController.inviteNewFriend);
-  fastify.get('/friends', FriendshipController.friends);
+  fastify.get('/friends', FriendsController.friends);
 }

@@ -7,7 +7,3 @@ export const friendsListSchema = z.array(
     friendshipID: z.string().uuid(),
   }),
 );
-
-export const friendInviteSchema = z.object({
-  inviteUserID: z.string().uuid(),
-});

@@ -40,20 +40,17 @@ model Friendship {
   friendID     String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  isBlocked    Boolean  @default(false)
+
+  inviteStatus InviteStatus @default(NO_STATUS)
 
   user   User @relation("UserToFriendship", fields: [userID], references: [userID])
   friend User @relation("FriendToFriendship", fields: [friendID], references: [userID])
-
-  // 0 - No status
-  // 1 - Pending
-  // 2 - Friend
-  // 3 - Blocked
-  status InviteStatus @default(NO_STATUS)
 }
 
 enum InviteStatus {
   NO_STATUS
   PENDING
-  FRIEND
-  BLOCKED
+  ACCEPTED
+  REFUSED
 }

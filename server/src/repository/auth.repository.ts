@@ -7,6 +7,7 @@ export class AuthRepository {
   @PrismaConnectDisconnect
   static async createUser(userData: CreateUserSchema) {
     const _salt = await bcrypt.genSalt();
+
     const _hashedPassword = await bcrypt.hash(userData.password, _salt);
 
     await prisma.user.create({

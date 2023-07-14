@@ -13,7 +13,7 @@ export const PrismaConnectDisconnect = (
       await prisma.$connect();
 
       // Call the original method with the Prisma client and arguments
-      const result = await originalMethod.apply(this, [prisma, ...args]);
+      const result = await originalMethod.apply(this, [...args]);
 
       return result;
     } finally {

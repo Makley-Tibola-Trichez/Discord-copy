@@ -1,6 +1,5 @@
 import { PrismaConnectDisconnect } from '../decorators/prismaConnectDisconnect';
 import { prisma } from '../lib/prisma';
-import { InviteStatus } from '@prisma/client';
 
 export class FriendsRepository {
   @PrismaConnectDisconnect
@@ -30,44 +29,5 @@ export class FriendsRepository {
           `;
 
     return friendsList;
-  }
-
-  @PrismaConnectDisconnect
-  static async inviteNewFriend(userID: string, invitedUserID: string) {
-    const _friendshipID = await prisma.friendship.findFirst({
-      select: {
-        friendshipID: true,
-      },
-      where: {
-        OR: [
-          {
-            userID: invitedUserID,
-            friendID: userID,
-          },
-          {
-            userID: userID,
-            friendID: invitedUserID,
-          },
-        ],
-      },
-    });
-
-    if (_friendshipID !== null) {
-      return null;
-    }
-
-    const _newFriendshipID = await prisma.friendship.create({
-      select: {
-        friendshipID: true,
-      },
-
-      data: {
-        userID: userID,
-        friendID: invitedUserID,
-        status: InviteStatus.PENDING,
-      },
-    });
-
-    return _newFriendshipID.friendshipID;
   }
 }
