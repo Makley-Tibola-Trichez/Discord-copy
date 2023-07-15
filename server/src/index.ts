@@ -8,4 +8,4 @@ route.public(authRoutes);
 route.private(friendsRoutes);
 route.private(friendshipRoutes);
 
-fastify.listen({ port: 8080 }, ThrowFastifyListenError);
+fastify.listen({ port: 8080, host: '0.0.0.0' }, ThrowFastifyListenError);

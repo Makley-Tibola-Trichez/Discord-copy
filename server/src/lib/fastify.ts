@@ -2,6 +2,7 @@ import Fastify, { FastifyInstance } from 'fastify';
 import fastifyJWT from '@fastify/jwt';
 import { isAuthenticated } from '../hooks/isAuthenticated';
 import dotenv from 'dotenv';
+import fastifyCors from '@fastify/cors';
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ const fastify = Fastify({
 fastify.register(fastifyJWT, {
   secret: process.env.SECRET_KEY,
 });
+fastify.register(fastifyCors);
 
 const _privateFastifyRoutes = (
   callback: (fastifyPrivate: FastifyInstance) => void,

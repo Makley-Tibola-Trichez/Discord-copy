@@ -1,17 +1,64 @@
+version: "3.9"
+
 services:
 
   db:
     image: postgres
-    restart: always
+    restart: unless-stopped
+    container_name: db-postgres
+    hostname: postgres
     environment:
-      POSTGRES_PASSWORD: m123456
-      POSTGRES_USER: makley
-      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
+      POSTGRES_USER: "${DATABASE_USER}"
+      POSTGRES_DB: "${DATABASE_NAME}"
     ports:
       - 5432:5432
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   restart: always
+  #   container_name: pgadmin
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: admin@admin.com
+  #     PGADMIN_DEFAULT_PASSWORD: admin
+  #   ports:
+  #     - 5050:80
+  #   links:
+  #     - db
+  #   networks:
+  #     - app-network
+
+
+  server:
+    container_name: backend-server
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+      - DATABASE_URL=postgresql://${DATABASE_USER}:${DATABASE_PASSWORD}@db/${DATABASE_NAME}?schema=${DATABASE_SCHEMA}
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+    # env_file:
+      # - .env
+    ports:
+      - 8080:8080
+    networks:
+      - app-network
+    links:
+      - db
+    volumes:
+      - server-pnpm-volume:/root/.local
 
 volumes:
   postgres-db-volume:
-    external: false
+  server-pnpm-volume:
+
+networks:
+  app-network:
