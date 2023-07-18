@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: ABC Ginto Nord;
+  font-style: normal;
+  font-weight: 800;
+  src: url(../../public/fonts/3d07f5abf272fbb5670d02ed687453d0.woff2)
+    format('woff2');
+}
+@font-face {
+  font-family: ABC Ginto Nord;
+  font-style: italic;
+  font-weight: 800;
+  src: url(../../public/fonts/3c0aa7f9d47d6a96b14ecada461ccf0e.woff2)
+    format('woff2');
+}
+@font-face {
+  font-family: 'gg sans';
+  src: url('../../public/fonts/ggsans-Bold.eot');
+  src: local('gg sans Bold'), local('ggsans-Bold'),
+    url('../../public/fonts/ggsans-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../../public/fonts/ggsans-Bold.woff2') format('woff2'),
+    url('../../public/fonts/ggsans-Bold.woff') format('woff'),
+    url('../../public/fonts/ggsans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'gg sans';
+  src: url('../../public/fonts/ggsans-SemiboldItalic.eot');
+  src: local('gg sans SemiBold Italic'), local('ggsans-SemiboldItalic'),
+    url('../../public/fonts/ggsans-SemiboldItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('../../public/fonts/ggsans-SemiboldItalic.woff2') format('woff2'),
+    url('../../public/fonts/ggsans-SemiboldItalic.woff') format('woff'),
+    url('../../public/fonts/ggsans-SemiboldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'gg sans';
+  src: url('../../public/fonts/ggsans-MediumItalic.eot');
+  src: local('gg sans Medium Italic'), local('ggsans-MediumItalic'),
+    url('../../public/fonts/ggsans-MediumItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('../../public/fonts/ggsans-MediumItalic.woff2') format('woff2'),
+    url('../../public/fonts/ggsans-MediumItalic.woff') format('woff'),
+    url('../../public/fonts/ggsans-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'gg sans Normal';
+  src: url('../../public/fonts/ggsans-BoldItalic.eot');
+  src: local('gg sans Bold Italic'), local('ggsans-BoldItalic'),
+    url('../../public/fonts/ggsans-BoldItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('../../public/fonts/ggsans-BoldItalic.woff2') format('woff2'),
+    url('../../public/fonts/ggsans-BoldItalic.woff') format('woff'),
+    url('../../public/fonts/ggsans-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'gg sans';
+  src: url('../../public/fonts/ggsans-Semibold.eot');
+  src: local('gg sans SemiBold'), local('ggsans-Semibold'),
+    url('../../public/fonts/ggsans-Semibold.eot?#iefix')
+      format('embedded-opentype'),
+    url('../../public/fonts/ggsans-Semibold.woff2') format('woff2'),
+    url('../../public/fonts/ggsans-Semibold.woff') format('woff'),
+    url('../../public/fonts/ggsans-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'gg sans';
+  src: url('../../public/fonts/ggsans-Medium.eot');
+  src: local('gg sans Medium'), local('ggsans-Medium'),
+    url('../../public/fonts/ggsans-Medium.eot?#iefix')
+      format('embedded-opentype'),
+    url('../../public/fonts/ggsans-Medium.woff2') format('woff2'),
+    url('../../public/fonts/ggsans-Medium.woff') format('woff'),
+    url('../../public/fonts/ggsans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'gg sans';
+  src: url('../../public/fonts/ggsans-ExtraBold.eot');
+  src: local('gg sans ExtraBold'), local('ggsans-ExtraBold'),
+    url('../../public/fonts/ggsans-ExtraBold.eot?#iefix')
+      format('embedded-opentype'),
+    url('../../public/fonts/ggsans-ExtraBold.woff2') format('woff2'),
+    url('../../public/fonts/ggsans-ExtraBold.woff') format('woff'),
+    url('../../public/fonts/ggsans-ExtraBold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'gg sans';
+  src: url('../../public/fonts/ggsans-ExtraBoldItalic.eot');
+  src: local('gg sans ExtraBold Italic'), local('ggsans-ExtraBoldItalic'),
+    url('../../public/fonts/ggsans-ExtraBoldItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('../../public/fonts/ggsans-ExtraBoldItalic.woff2') format('woff2'),
+    url('../../public/fonts/ggsans-ExtraBoldItalic.woff') format('woff'),
+    url('../../public/fonts/ggsans-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'gg sans Normal';
+  src: url('../../public/fonts/ggsans-Normal.eot');
+  src: local('gg sans Normal'), local('ggsans-Normal'),
+    url('../../public/fonts/ggsans-Normal.eot?#iefix')
+      format('embedded-opentype'),
+    url('../../public/fonts/ggsans-Normal.woff2') format('woff2'),
+    url('../../public/fonts/ggsans-Normal.woff') format('woff'),
+    url('../../public/fonts/ggsans-Normal.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'gg sans Normal';
+  src: url('../../public/fonts/ggsans-NormalItalic.eot');
+  src: local('gg sans Normal Italic'), local('ggsans-NormalItalic'),
+    url('../../public/fonts/ggsans-NormalItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('../../public/fonts/ggsans-NormalItalic.woff2') format('woff2'),
+    url('../../public/fonts/ggsans-NormalItalic.woff') format('woff'),
+    url('../../public/fonts/ggsans-NormalItalic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: 400;
+  src: url(../../public/fonts/980082c4328266be3342a03dcb37c432.woff2)
+    format('woff2');
+}
+@font-face {
+  font-family: Noto Sans;
+  font-style: italic;
+  font-weight: 400;
+  src: url(../../public/fonts/db985aaa3c64f10506d96d876e350d47.woff2)
+    format('woff2');
+}
+@font-face {
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: 500;
+  src: url(../../public/fonts/05422eb499ddf5616e44a52c4f1063ae.woff2)
+    format('woff2');
+}
+@font-face {
+  font-family: Noto Sans;
+  font-style: italic;
+  font-weight: 500;
+  src: url(../../public/fonts/412f5d9534ce2a2e1a1ae9b746bca5b5.woff2)
+    format('woff2');
+}
+@font-face {
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: 600;
+  src: url(../../public/fonts/e55012627a8f6e7203b72a8de730c483.woff2)
+    format('woff2');
+}
+@font-face {
+  font-family: Noto Sans;
+  font-style: italic;
+  font-weight: 600;
+  src: url(../../public/fonts/d9b0aabb79e7d8b3b14789ebd534f158.woff2)
+    format('woff2');
+}
+@font-face {
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: 700;
+  src: url(../../public/fonts/7cf1be7696bf689b97230262eade8ad8.woff2)
+    format('woff2');
+}
+@font-face {
+  font-family: Noto Sans;
+  font-style: italic;
+  font-weight: 700;
+  src: url(../../public/fonts/f9bf0f65660d23c6f359d22720fc55ae.woff2)
+    format('woff2');
+}
+@font-face {
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: 800;
+  src: url(../../public/fonts/d6db7b5639c7ed70f8b582984dda6c62.woff2)
+    format('woff2');
+}
+@font-face {
+  font-family: Noto Sans;
+  font-style: italic;
+  font-weight: 800;
+  src: url(../../public/fonts/a2a248f78d12dd5b842930bda7036302.woff2)
+    format('woff2');
+}
+@font-face {
+  font-family: Source Code Pro;
+  font-style: normal;
+  font-weight: 400;
+  src: url(../../public/fonts/c59a692e5d6ed04d4cb01f58c10d6509.woff2)
+    format('woff2');
+}
+@font-face {
+  font-family: Source Code Pro;
+  font-style: normal;
+  font-weight: 600;
+  src: url(../../public/fonts/2e9c1d3fb7d0851d71596f9f8b10393b.woff2)
+    format('woff2');
+}
+:root {
+  --font-primary: 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif;
+  --font-display: 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif;
+  --font-headline: 'ABC Ginto Nord', 'Noto Sans', 'Helvetica Neue', Helvetica,
+    Arial, sans-serif;
+  --font-code: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console',
+    'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
+    'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier,
+    monospace;
+}
