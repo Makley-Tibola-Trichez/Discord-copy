@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch ./src/index.ts",
     "build": "tsup ./src/index.ts",
-    "serve": "prisma migrate deploy && node ./dist/index.js"
+    "serve": "prisma migrate reset --force && node ./dist/index.js"
   },
   "keywords": [],
   "author": "",

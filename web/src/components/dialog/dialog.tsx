@@ -2,6 +2,7 @@
 
 import { CaretLeft } from '@phosphor-icons/react';
 import { useId } from 'react';
+import { TextField } from '../textField';
 type DialogProps = {
   open: boolean;
   onClose(): void;
@@ -23,14 +24,7 @@ export function Dialog() {
             Estamos muito animados em te ver novamente!
           </div>
         </div>
-        <div>
-          <label className="uppercase flex flex-col">
-            <span className="font-bold mb-1 text-xs text-zinc-400">
-              E-mail lou número de telefone
-            </span>
-            <input type="text" className="p-2.5 rounded-sm bg-stone-900" />
-          </label>
-        </div>
+        <TextField label="E-mail ou número de telefone" required />
       </div>
     </div>
   );
