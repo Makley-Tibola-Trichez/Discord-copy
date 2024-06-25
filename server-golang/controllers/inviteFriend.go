@@ -17,6 +17,10 @@ func InviteFriend(c echo.Context) error {
 	user := c.Get("user").(*jwt.Token)
 	claims := user.Claims.(*models.TokenClaims)
 
+	if claims.UserID == uint(friendID) {
+		return c.JSON(400, "You can't invite yourself")
+	}
+
 	err := repository.InviteFriend(&friendID, &claims.UserID)
 
 	if err != nil {

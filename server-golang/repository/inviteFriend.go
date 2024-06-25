@@ -8,6 +8,7 @@ import (
 func InviteFriend(friendID *int, userID *uint) error {
 
 	pool := db.ConnectDB()
+	defer pool.Close()
 
 	fmt.Println(*userID, *friendID, *userID)
 
