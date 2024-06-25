@@ -3,6 +3,7 @@ package repository
 import (
 	"discord-server/db"
 	"discord-server/models"
+	"fmt"
 
 	"golang.org/x/crypto/bcrypt"
 )
@@ -18,7 +19,11 @@ func Login(user *models.Login) (uint, error) {
 
 	result := pool.QueryRow(`SELECT user_id, password FROM public.dsc_user WHERE email = $1`, user.Email)
 
-	result.Scan(&id, &password)
+	err := result.Scan(&id, &password)
+
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	validPassword := bcrypt.CompareHashAndPassword(
 		[]byte(password),

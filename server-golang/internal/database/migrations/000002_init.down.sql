@@ -1,0 +1,1 @@
+DROP TABLE dsc_friendship if exists;
