@@ -1,3 +1,4 @@
+-- migrate:up
 CREATE TABLE dsc_user (
     user_id SERIAL PRIMARY KEY,
     email VARCHAR(255) NOT NULL,
@@ -5,3 +6,6 @@ CREATE TABLE dsc_user (
     username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL
 );
+
+-- migrate:down
+DROP TABLE IF EXISTS dsc_user;
