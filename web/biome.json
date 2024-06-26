@@ -1,0 +1,25 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.8.2/schema.json",
+	"organizeImports": {
+		"enabled": true
+	},
+	"formatter": {
+		"enabled": true,
+		"indentWidth": 2
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"nursery": {
+				"useSortedClasses": {
+					"fix": "safe",
+					"level": "warn",
+					"options": {
+						"attributes": []
+					}
+				}
+			},
+			"recommended": true
+		}
+	}
+}

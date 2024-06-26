@@ -14,11 +14,9 @@ export async function loginAction(formData: FormData) {
 
 	const response = await api.auth.login({ email, password });
 
-	console.log(response);
-
 	if (response.statusCode === 200) {
 		cookies().set("token", `Bearer ${response.body.token}`);
 	}
 
-	redirect("/home");
+	redirect("/~/home");
 }

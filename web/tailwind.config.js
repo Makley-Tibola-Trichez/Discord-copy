@@ -33,7 +33,11 @@ module.exports = {
 				},
 
 				"d-neutral": {
+					700: "#313338",
 					900: "#1E1F22",
+				},
+				"d-burple": {
+					500: "#5865F2",
 				},
 			},
 			keyframes: {
