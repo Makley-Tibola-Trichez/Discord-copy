@@ -20,6 +20,10 @@ module.exports = {
 			},
 		},
 		extend: {
+			boxShadow: {
+				divider:
+					"0 1px 0 hsl(0 / 0.2), 0 1.5px 0 hsl(240 / 0.05),0 2px 0 hsl(0 / 0.05)",
+			},
 			transitionProperty: {
 				height: "height",
 				rounded: "border-radius",
@@ -33,7 +37,11 @@ module.exports = {
 				},
 
 				"d-neutral": {
+					"100-experimental": "#949ba4",
+					600: "#404249",
 					700: "#313338",
+					750: "#2B2D31",
+					800: "#232428",
 					900: "#1E1F22",
 				},
 				"d-burple": {
